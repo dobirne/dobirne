@@ -117,7 +117,8 @@ lazy val root = project
     `redis4cats-contrib-bench`,
     `tapir-contrib-server`,
     `tapir-contrib-log4cats`,
-    `fs2-contrib-batcher`
+    `fs2-contrib-batcher`,
+    `phantom-id`
   )
   .configure(defaultPlugins)
   .settings(sharedSettings)
@@ -181,6 +182,14 @@ lazy val `tapir-contrib-log4cats` = {
     )
 }
 
+lazy val `phantom-id` = {
+  project
+    .configure(dobirneModule("phantom-id"))
+    .configure(defaultProjectConfiguration)
+}
+
+
+
 lazy val `fs2-contrib-batcher` = {
   project
     .configure(fs2Module("batcher"))
@@ -202,3 +211,4 @@ def redis4catsModule(submoduleName: String): Project => Project = submodule("red
 def tapirModule(submoduleName: String): Project => Project = submodule("tapir-contrib", submoduleName)
 
 def fs2Module(submoduleName: String): Project => Project = submodule("fs2-contrib", submoduleName)
+def dobirneModule(submoduleName: String): Project => Project = submodule("dobirne", submoduleName)
